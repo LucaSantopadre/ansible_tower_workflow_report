@@ -1,0 +1,9 @@
+---
+- name: Print Hello world :)
+  hosts: all
+  gather_facts: False
+
+  tasks:
+    - name: "Print :)"
+      debug:
+        msg: "Hello world! I'm tower job {{ tower_job_id }}"
