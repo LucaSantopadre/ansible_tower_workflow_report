@@ -1,0 +1,10 @@
+---
+- name: Retrive workflow information about hosts and generates a report
+  hosts: localhost
+  connection: local
+  gather_facts: False
+
+  roles: 
+    - role: workflow_report
+      vars: 
+        workflow_id: 0

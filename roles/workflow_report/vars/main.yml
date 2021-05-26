@@ -1,0 +1,7 @@
+#vars to send report via email
+email_server: ""
+email_server_port: 587
+email_username: ""
+email_password: ""
+email_receiver: "John Smith <john.smith@example.com>"
+email_starttls: "try"

@@ -1,0 +1,25 @@
+- name: Set the timestamp...
+  set_fact:
+    timestamp: "{{ lookup('pipe', 'date +%Y%m%d%H%M%S') }}"
+
+- name: Generating report name
+  set_fact:
+    report_name: "report-{{ tower_job_id }}-wf{{ workflow_id }}-{{ timestamp }}.csv"
+
+- name: Create dir
+  file:
+    path: "/tmp/reportHC"
+    state: directory
+
+- name: Generate report
+  template:
+    src: report.j2
+    dest: /tmp/reportHC/{{ report_name }}
+
+- name: Show templating results
+  debug:
+    msg: "{{ lookup('file', '/tmp/reportHC/{{ report_name }}') }}"
+
+- name: Saving the file path to allow the upload to the sfs server
+  set_fact:
+      file_path: /tmp/reportHC/{{ report_name }}

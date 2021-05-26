@@ -1,0 +1,8 @@
+Workflow id;host{% for j in job_ids %};job_id;job_name;success{% endfor %}
+
+{% for host in host_summaries %}
+{% if host[0] != 'localhost'%}
+{{ workflow_id }};{{ host[0] }}{% for host_info in host[1] %}{% set job_id, job_name, failed = host_info | json_query('summary_fields.job.id'), host_info | json_query('summary_fields.job.name'),  host_info | json_query('\"failed\"') %};{{job_id}};{{job_name}};{{not failed}}{% endfor %}
+
+{% endif %}
+{% endfor %}

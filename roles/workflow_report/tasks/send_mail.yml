@@ -1,0 +1,14 @@
+- name: Sending an email with the report
+  mail:
+    host: "{{ email_server }}"
+    port: "{{ email_server_port }}"
+    secure: "{{ email_starttls }}"
+    sender: "{{ email_username }}"
+    username: "{{ email_username }}"
+    password: "{{ email_password }}"
+    to: "{{ email_receiver }}"
+    subject: Report HC WF {{ workflow_id }}
+    body: You can find attached to this email the report you requested.
+    attach: /tmp/reportHC/{{ report_name }}
+  delegate_to: localhost
+  when: send_mail

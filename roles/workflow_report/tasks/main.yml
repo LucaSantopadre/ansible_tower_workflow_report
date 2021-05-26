@@ -1,0 +1,9 @@
+---
+- name: 'Include Get Workflow Jobs tasks'
+  include_tasks: get_workflow_jobs.yml
+
+- name: 'Include Generate report tasks'
+  include_tasks: generate_report.yml
+
+- name: 'Include Send mail tasks'
+  include_tasks: send_mail.yml
