@@ -2,7 +2,7 @@
   set_fact:
       workflow_job_nodes_id:  "{{ lookup('ansible.tower.tower_api', 'workflow_jobs/{{workflow_id}}/workflow_nodes', return_ids=True, wantlist=True, return_all=True, max_objects=max_hosts ) }}"
   
-- name: Retriving job_ids from workflow_nodes (exclude projects update and utility jobs) ...
+- name: Retriving job_ids from workflow_nodes...
   set_fact:
     job_ids: "{{ job_ids | default([]) + [ item_lookup | json_query('summary_fields.job.id')] if item_lookup | json_query('summary_fields.job.id') else [] }}"
   vars:
